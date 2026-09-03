@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>루베 계산기 | 평수 계산기 | 콘크리트 물량 계산기 | 모래·자갈 계산기</title>
+<meta name="description" content="루베(㎥), 평수, 콘크리트 물량, 모래·자갈 물량을 쉽고 빠르게 계산하는 무료 건설·부동산 종합 계산기입니다.">
+<meta name="keywords" content="루베 계산기, 루베 계산, 1루베, 평수 계산기, 제곱미터 평 변환, 콘크리트 물량 계산기, 모래 계산기, 자갈 계산기">
+<meta name="robots" content="index,follow">
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,"Malgun Gothic",sans-serif;background:#f5f7fa;color:#1f2937;line-height:1.65}
+a{color:inherit}.wrap{max-width:1050px;margin:auto;padding:18px}header{background:#1f2937;color:white;text-align:center;padding:40px 18px}
+header h1{margin:0 0 8px;font-size:clamp(28px,5vw,42px)}header p{margin:0;color:#e5e7eb}
+nav{position:sticky;top:0;z-index:5;background:white;border-bottom:1px solid #ddd;box-shadow:0 2px 8px #0000000d}
+.navin{max-width:1050px;margin:auto;display:flex;overflow:auto;white-space:nowrap}.navin a{padding:12px 14px;text-decoration:none;font-weight:bold;font-size:14px}
+section{background:white;border-radius:14px;padding:24px;margin:20px 0;box-shadow:0 2px 12px #0000000d}
+h2{margin-top:0}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cards a{padding:13px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:9px;text-align:center;text-decoration:none;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}label{display:block;font-weight:bold;font-size:14px;margin-bottom:5px}
+input,select{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:8px;font-size:16px;background:white}
+button{border:0;border-radius:8px;padding:12px 17px;background:#111827;color:white;font-weight:bold;cursor:pointer}.secondary{background:#e5e7eb;color:#111827}
+.buttons{display:flex;gap:9px;margin-top:15px}.result{margin-top:16px;padding:17px;background:#f3f4f6;border-left:5px solid #111827;border-radius:9px}.result strong{font-size:24px}
+.sub,.notice{color:#6b7280;font-size:14px}.faq{border-top:1px solid #e5e7eb;padding:14px 0}.faq h3{margin:0 0 5px;font-size:17px}
+table{width:100%;border-collapse:collapse}th,td{border:1px solid #e5e7eb;padding:9px}th{background:#f9fafb}
+footer{text-align:center;color:#6b7280;padding:25px;font-size:13px}
+@media(max-width:700px){.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}@media(max-width:430px){.cards{grid-template-columns:1fr}section{padding:18px}}
+</style>
+</head>
+<body>
+<header><h1>건설·부동산 종합 계산기</h1><p>루베(㎥) · 평수 · 콘크리트 물량 · 모래·자갈 물량을 한 번에 계산하세요.</p></header>
+<nav><div class="navin">
+<a href="#rube">루베 계산기</a><a href="#pyeong">평수 계산기</a><a href="#concrete">콘크리트</a><a href="#aggregate">모래·자갈</a><a href="#guide">계산 방법</a><a href="#faq">FAQ</a>
+</div></nav>
+<main class="wrap">
+<section><h2>무료 건설·부동산 계산기</h2>
+<p>건설 현장과 부동산 업무에서 자주 사용하는 <strong>루베 계산, 평수 계산, 콘크리트 물량 계산, 모래·자갈 물량 계산</strong>을 간편하게 확인할 수 있습니다.</p>
+<div class="cards"><a href="#rube">㎥ 루베 계산</a><a href="#pyeong">㎡ ↔ 평</a><a href="#concrete">콘크리트 물량</a><a href="#aggregate">모래·자갈</a></div></section>
+
+<section id="rube"><h2>① 루베 계산기 (㎥)</h2><p class="sub">가로 × 세로 × 높이(두께)로 부피를 계산합니다.</p>
+<div class="grid"><div><label>가로 (m)</label><input id="rw" type="number" step="any" placeholder="예: 5"></div><div><label>세로 (m)</label><input id="rl" type="number" step="any" placeholder="예: 10"></div><div><label>높이 (m)</label><input id="rh" type="number" step="any" placeholder="예: 0.2"></div></div>
+<div class="buttons"><button onclick="rube()">루베 계산하기</button><button class="secondary" onclick="reset('rube')">초기화</button></div><div id="rr" class="result">계산 결과가 여기에 표시됩니다.</div></section>
+
+<section id="pyeong"><h2>② 평수 계산기</h2><p class="sub">1평 = 약 3.305785㎡ 기준으로 변환합니다.</p>
+<div class="grid"><div><label>숫자 입력</label><input id="pv" type="number" step="any" placeholder="예: 84"></div><div><label>변환 방향</label><select id="pt"><option value="mp">㎡ → 평</option><option value="pm">평 → ㎡</option></select></div></div>
+<div class="buttons"><button onclick="pyeong()">평수 계산하기</button><button class="secondary" onclick="reset('pyeong')">초기화</button></div><div id="pr" class="result">계산 결과가 여기에 표시됩니다.</div></section>
+
+<section id="concrete"><h2>③ 콘크리트 물량 계산기</h2><p class="sub">바닥·기초의 가로 × 세로 × 두께로 콘크리트 부피를 계산합니다.</p>
+<div class="grid"><div><label>가로 (m)</label><input id="cw" type="number" step="any" placeholder="예: 10"></div><div><label>세로 (m)</label><input id="cl" type="number" step="any" placeholder="예: 20"></div><div><label>두께 (cm)</label><input id="ct" type="number" step="any" placeholder="예: 15"></div></div>
+<div class="buttons"><button onclick="concrete()">콘크리트 계산하기</button><button class="secondary" onclick="reset('concrete')">초기화</button></div><div id="cr" class="result">계산 결과가 여기에 표시됩니다.</div><p class="notice">※ 실제 발주량은 설계도면과 현장 조건, 손실량 등을 별도로 검토하세요.</p></section>
+
+<section id="aggregate"><h2>④ 모래·자갈 물량 계산기</h2><p class="sub">부피(㎥)와 대표 밀도로 예상 중량을 계산합니다.</p>
+<div class="grid"><div><label>부피 (㎥)</label><input id="av" type="number" step="any" placeholder="예: 10"></div><div><label>재료 선택</label><select id="at"><option value="1.6">모래 — 약 1.6 t/㎥</option><option value="1.5">자갈 — 약 1.5 t/㎥</option><option value="1.7">혼합골재 — 약 1.7 t/㎥</option><option value="1.8">쇄석 — 약 1.8 t/㎥</option></select></div></div>
+<div class="buttons"><button onclick="aggregate()">모래·자갈 계산하기</button><button class="secondary" onclick="reset('aggregate')">초기화</button></div><div id="ar" class="result">계산 결과가 여기에 표시됩니다.</div><p class="notice">※ 실제 중량은 함수율·입도·다짐 상태 등에 따라 달라질 수 있습니다.</p></section>
+
+<section id="guide"><h2>루베·평수·콘크리트 계산 방법</h2>
+<h3>루베란?</h3><p>건설 현장에서 말하는 <strong>루베</strong>는 일반적으로 세제곱미터(㎥)를 뜻하며, <strong>1루베 = 1㎥</strong>입니다.</p>
+<h3>루베 계산 공식</h3><p><strong>가로(m) × 세로(m) × 높이(m) = 부피(㎥)</strong></p>
+<h3>콘크리트 물량 계산</h3><p>예를 들어 가로 10m × 세로 20m × 두께 15cm라면 15cm를 0.15m로 바꿔 <strong>10 × 20 × 0.15 = 30㎥</strong>입니다.</p>
+<h3>㎡를 평으로 계산</h3><p><strong>㎡ ÷ 3.305785 = 평</strong>입니다. 예: 84㎡ ÷ 3.305785 ≈ <strong>25.41평</strong>.</p>
+<table><tr><th>면적</th><th>평수(약)</th></tr><tr><td>59㎡</td><td>17.85평</td></tr><tr><td>74㎡</td><td>22.39평</td></tr><tr><td>84㎡</td><td>25.41평</td></tr><tr><td>101㎡</td><td>30.55평</td></tr><tr><td>114㎡</td><td>34.49평</td></tr></table>
+</section>
+
+<section id="faq"><h2>자주 묻는 질문</h2>
+<div class="faq"><h3>Q. 1루베는 몇 ㎥인가요?</h3><p>1루베는 1세제곱미터(1㎥)입니다.</p></div>
+<div class="faq"><h3>Q. 84㎡는 몇 평인가요?</h3><p>84㎡는 약 25.41평입니다.</p></div>
+<div class="faq"><h3>Q. 콘크리트 두께 10cm는 어떻게 입력하나요?</h3><p>콘크리트 계산기의 두께란에 10을 입력하면 자동으로 0.10m로 환산합니다.</p></div>
+<div class="faq"><h3>Q. 모래 1루베는 정확히 몇 톤인가요?</h3><p>모래 종류와 함수율 등에 따라 달라지므로 계산기의 값은 참고용 예상 중량입니다.</p></div>
+</section>
+</main>
+<footer>건설·부동산 종합 계산기 · 루베 계산기 · 평수 계산기 · 콘크리트 물량 계산기 · 모래·자갈 계산기</footer>
+<script>
+const n=id=>parseFloat(document.getElementById(id).value);
+const f=x=>Number(x).toLocaleString('ko-KR',{maximumFractionDigits:3});
+function rube(){let w=n('rw'),l=n('rl'),h=n('rh');rr.innerHTML=[w,l,h].some(x=>isNaN(x)||x<0)?'가로·세로·높이를 올바르게 입력하세요.':`<strong>${f(w*l*h)} ㎥</strong><div>계산식: ${f(w)} × ${f(l)} × ${f(h)} = ${f(w*l*h)} ㎥</div>`}
+function pyeong(){let v=n('pv');if(isNaN(v)||v<0){pr.innerHTML='숫자를 올바르게 입력하세요.';return}if(pt.value==='mp'){let x=v/3.305785;pr.innerHTML=`<strong>${f(x)} 평</strong><div>${f(v)}㎡ ÷ 3.305785 = ${f(x)}평</div>`}else{let x=v*3.305785;pr.innerHTML=`<strong>${f(x)} ㎡</strong><div>${f(v)}평 × 3.305785 = ${f(x)}㎡</div>`}}
+function concrete(){let w=n('cw'),l=n('cl'),cm=n('ct');if([w,l,cm].some(x=>isNaN(x)||x<0)){cr.innerHTML='가로·세로·두께를 올바르게 입력하세요.';return}let v=w*l*(cm/100);cr.innerHTML=`<strong>기본 물량 ${f(v)} ㎥</strong><div>두께 ${f(cm)}cm = ${f(cm/100)}m<br>참고용 5% 여유: 약 ${f(v*1.05)} ㎥</div>`}
+function aggregate(){let v=n('av'),d=n('at');if(isNaN(v)||v<0){ar.innerHTML='부피를 올바르게 입력하세요.';return}ar.innerHTML=`<strong>약 ${f(v*d)} 톤</strong><div>${f(v)} ㎥ × ${d} t/㎥ = 약 ${f(v*d)} 톤</div>`}
+function reset(type){let ids={rube:['rw','rl','rh'],pyeong:['pv'],concrete:['cw','cl','ct'],aggregate:['av']}[type];ids.forEach(x=>document.getElementById(x).value='');let r={rube:rr,pyeong:pr,concrete:cr,aggregate:ar}[type];r.innerHTML='계산 결과가 여기에 표시됩니다.'}
+</script>
+</body>
+</html>
